@@ -11,15 +11,12 @@
 	</head>
 	<body>
 		<div class="container mt-3">
-			<div class="mt-4 p-5 bg-primary text-white rounded">
+			<div class="container mt-4 p-5 bg-primary text-white rounded">
 				<h1 class="display-2">User Web App<small class="display-6"> - Home Page</small></h1  >
 				<small>CRUD operations for Users</small>
 			</div >
 		</div >
-		<div class="container mt-3">
-			
-		</div >
-		<div class="container mt-3" style="display: table;">
+		<div class="container mt-3" style="overflow-x:auto;">
 			<table class="table table-dark table-hover">
 			<caption>All Users</caption >
 				<thead>
@@ -45,7 +42,7 @@
 					</tr >
 				</tbody>
 			</table>
-		<div>
+		</div>
 		<div class="container mt-3" style="display:flex; justify-content:flex-end;">
 			<button type="button" class="btn btn-success mb-4"style="margin-right:10px;" th:onclick="|window.location.href='@{/newUserForm}'|">Add New User</button>
 			<button type="button" id ="deleteUserBtn" class="btn btn-danger mb-4" th:onclick="deleteSelectedUsers()">Delete selected user(s)</button>

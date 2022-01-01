@@ -16,7 +16,7 @@
 			</div >
 		</div >
 		<div class="container mt-3">
-			<form class="mt-3 col-6" th:object="${userToUpdate}" th:action="@{/updateUser}" method="POST" >
+			<form class="mt-3 col-7" th:object="${userToUpdate}" th:action="@{/updateUser}" method="POST" >
 				<label for="userId" class="form-label">User ID: <small style="font-size: x-small;"><font color="red">Unmodifiable*</font></small ></label>
 				<input type="text" th:field="*{userId}" class="form-control" id="userId" name="userId" readonly required>
 				<label for="firstName" class="form-label">First Name:</label>
@@ -29,7 +29,7 @@
 				<input type="text"  th:field="*{city}" class="form-control" id="city" placeholder="Delhi" name="city" required>
 				<label for="mobile" class="form-label mt-3">Mobile No.:</label>
 				<input type="text"  th:field="*{mobileNumber}" pattern="[0-9]{10}" inputmode="numeric" class="form-control" id="mobile" placeholder="xxxxxxxxxx" name="mobileNumber">
-				<input type="submit" class="btn btn-success mt-4 col-3 mb-4" value="Update User">
-				<input type="reset" class="btn btn-danger mt-4 col-3 mb-4" value="Clear" style="margin-left: 10px;">
+				<input type="submit" class="btn btn-success mt-4 mb-4" value="Update User">
+				<input type="reset" class="btn btn-danger mt-4 mb-4" value="Clear" style="margin-left: 10px;">
 			</form  >
 		</div>
