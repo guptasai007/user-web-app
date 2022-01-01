@@ -6,11 +6,12 @@
 
 		<!-- Latest compiled JavaScript -->
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 	<body>
-		<div class="container">
+		<div class="container mt-3">
 			<div class="mt-4 p-5 bg-primary text-white rounded">
-				<h1 class="display-2">User Web App</h1  >
+				<h1 class="display-2">User Web App<small class="display-6"> - Home Page</small></h1  >
 				<small>CRUD operations for Users</small>
 			</div >
 		</div >
@@ -33,7 +34,7 @@
 				</thead>
 				<tbody>
 					<tr th:each="user:${users}">
-						<td><a th:text="${user.userId}" th:href="@{|/user/${user.userId}|}"></a></td>
+						<td><a th:text="${user.userId}" th:href="@{|/updateUser/${user.userId}|}"></a></td>
 						<td th:text="${user.firstName}"></td>
 						<td th:text="${user.lastName}"></td>
 						<td th:text="${user.dob}"></td>
@@ -45,8 +46,8 @@
 			</table>
 		<div>
 		<div class="container mt-3" style="display:flex; justify-content:flex-end;">
-			<button type="button" class="btn btn-success"style="margin-right:10px;" th:onclick="|window.location.href='@{/newUser}'|">Add New User</button>
-			<button type="button" class="btn btn-danger">Delete selected user(s)</button>
+			<button type="button" class="btn btn-success mb-4"style="margin-right:10px;" th:onclick="|window.location.href='@{/newUserForm}'|">Add New User</button>
+			<button type="button" class="btn btn-danger mb-4">Delete selected user(s)</button>
 		</div>
 	</body>
 </html >
