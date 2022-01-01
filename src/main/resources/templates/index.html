@@ -6,6 +6,7 @@
 
 		<!-- Latest compiled JavaScript -->
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 	<body>
@@ -29,7 +30,7 @@
 						<th>DoB</th>
 						<th>City</th>
 						<th>Mobile No.</th>
-						<th><input type="checkbox"><small style="margin-left: 5px;">Select All</small ></th>
+						<th><input type="checkbox" id="selectAllUserIdCheckBox"><small style="margin-left: 5px;">Select All</small ></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -40,14 +41,49 @@
 						<td th:text="${user.dob}"></td>
 						<td th:text="${user.city}"></td>
 						<td th:text="${user.mobileNumber}"></td>
-						<td><input type="checkbox"></td>
+						<td><input type="checkbox" class="deleteUserIdCheckBox" name="deleteUserIdCheckBox" th:value="${user.userId}"></td>
 					</tr >
 				</tbody>
 			</table>
 		<div>
 		<div class="container mt-3" style="display:flex; justify-content:flex-end;">
 			<button type="button" class="btn btn-success mb-4"style="margin-right:10px;" th:onclick="|window.location.href='@{/newUserForm}'|">Add New User</button>
-			<button type="button" class="btn btn-danger mb-4">Delete selected user(s)</button>
+			<button type="button" id ="deleteUserBtn" class="btn btn-danger mb-4" th:onclick="deleteSelectedUsers()">Delete selected user(s)</button>
 		</div>
 	</body>
+	<script text="text/javascript">
+		let userIdsToDelete=[];
+		
+		if($("tbody tr").length < 1) $("#deleteUserBtn").prop('disabled', true);
+		
+		$("#selectAllUserIdCheckBox").click(function(){
+			if(this.checked)
+			{
+				$(".deleteUserIdCheckBox").prop('checked', true);
+				userIdsToDelete = $("input:checkbox[name=deleteUserIdCheckBox]:checked").map((index, checkBox) => $(checkBox).val());
+			}
+			else
+			{
+				$(".deleteUserIdCheckBox").prop('checked', false);
+				userIdsToDelete = [];
+			}
+		});
+		
+		$(".deleteUserIdCheckBox").click(function(){
+			userIdsToDelete = $("input:checkbox[name=deleteUserIdCheckBox]:checked").map((index, checkBox) => $(checkBox).val());
+		});
+		
+		function deleteSelectedUsers()
+		{
+			if(userIdsToDelete.length < 1) alert('No user selected for deletion!');
+			else
+			{
+				[...userIdsToDelete].forEach(function(userId){
+					$.ajax({url:`/deleteUser/${userId}`, async:false, method:"DELETE"}).fail('Deletion failed!');
+				});
+			}
+			window.location.reload();
+		}
+	</script >
+	
 </html >

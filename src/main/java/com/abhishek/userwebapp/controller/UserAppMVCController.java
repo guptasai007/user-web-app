@@ -58,4 +58,10 @@ public class UserAppMVCController {
 		repository.save(user);
 		httpResponse.sendRedirect("/");
 	}
+	
+	@RequestMapping(value="/deleteUser/{userId}", method=RequestMethod.DELETE)
+	public void deleteProduct(@PathVariable("userId") long userId)
+	{
+		repository.deleteById(userId);
+	}
 }
